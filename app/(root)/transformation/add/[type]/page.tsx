@@ -10,10 +10,17 @@ const AddTransformationTypePage = async ({
 }: SearchParamProps) => {
   const { userId } = auth();
 
+  console.log(userId, "USER ID FROM AUTH");
   if (!userId) redirect("/sign-in");
+  
   const user = await getUserById(userId);
 
-  console.log(user);
+  // if (!user) {
+  //   console.error("User not found:", userId);
+  //   redirect("/sign-in"); // Or show an error message
+  //   return null;
+  // }
+
   const transformation = transformationTypes[type];
   return (
     <>

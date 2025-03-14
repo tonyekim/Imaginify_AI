@@ -71,12 +71,12 @@ const TransformationForm = ({
   const initialValues =
     data && action === "Update"
       ? {
-          title: data?.title,
-          aspectRatio: data?.aspectRatio,
-          color: data?.color,
-          prompt: data?.prompt,
-          publicId: data?.publicId,
-        }
+        title: data?.title,
+        aspectRatio: data?.aspectRatio,
+        color: data?.color,
+        prompt: data?.prompt,
+        publicId: data?.publicId,
+      }
       : defaultValues;
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -180,9 +180,8 @@ const TransformationForm = ({
           [fieldName === "prompt" ? "prompt" : "to"]: value,
         },
       }));
-
-      return onChangeField(value);
-    }, 1000);
+    }, 1000) ();
+    return onChangeField(value);
   };
 
   // TODO: Return to updateCredits
@@ -227,7 +226,10 @@ const TransformationForm = ({
               <Select
                 onValueChange={(value) =>
                   onSelectFieldHandler(value, field.onChange)
+
                 }
+                value={field.value}
+
               >
                 <SelectTrigger className="select-field">
                   <SelectValue placeholder="Select" />
